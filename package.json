@@ -1,0 +1,26 @@
+{
+  "name": "@imf/craft-client",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "craft": "bin/craft.js"
+  },
+  "author": "sudongyu",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^8.2.0",
+    "cpy": "^8.1.2",
+    "figlet": "^1.5.2",
+    "make-dir": "^3.1.0",
+    "process": "^0.11.10",
+    "shelljs": "^0.8.4"
+  },
+  "publishConfig": {
+    "@imf:registry": "http://maven.jinuo.me/repository/jinuo-npm-inner"
+  }
+}
