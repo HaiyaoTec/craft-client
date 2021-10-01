@@ -16,15 +16,10 @@ let pkgManifest = require(path.join(cwd(), 'package.json'));
 //获取craft配置信息对象
 let craftConfig = pkgManifest?.craft;
 
-console.log(craftConfig)
 const program = new Command();
 
 
 program
-    // .option('-d, --debug', 'output extra debugging')
-    // .option('-s, --small', 'small pizza size')
-    // .option('-p, --pizza-type <type>', 'flavour of pizza')
-    // .option('-f, --foo', 'enable some foo')
     .option('-d, --docker', 'generate docker image');
 
 program.addHelpText('after', `

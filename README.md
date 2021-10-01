@@ -3,6 +3,7 @@
 
 Very simple to help you generate docker image
 
+(Finally free of Gradle ^_^)
 
 ## Installation
 
