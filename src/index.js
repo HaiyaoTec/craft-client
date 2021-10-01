@@ -1,2 +1,1 @@
-import { cwd } from 'process';
-console.log(`Current directory: ${cwd()}`);
+console.log('hello world sudongyu')
