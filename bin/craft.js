@@ -50,9 +50,9 @@ if (options.docker) {
                 break;
             case "node":
                 console.log(`
-            ###################
+            ####################
             node docker building
-            ###################
+            ####################
             `)
 
                 nodeDockerTask()
@@ -66,9 +66,9 @@ if (options.docker) {
             case "framework":
 
                 console.log(`
-            ###################
+            #########################
             framework docker building
-            ###################
+            #########################
             `)
 
                 frameworkDockerTask()
