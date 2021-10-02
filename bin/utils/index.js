@@ -1,6 +1,8 @@
 import figlet from 'figlet'
 import {cwd} from 'process';
 import {createRequire} from "module";
+import chalk from 'chalk';
+
 
 
 import path from "path";
@@ -36,7 +38,7 @@ function showFiglet() {
             console.dir(err);
             return;
         }
-        console.log(data);
+        console.log(chalk.blue(data));
     });
 }
 
