@@ -69,18 +69,12 @@ Install craft-client with npm
 
 | Parameter    | Type     | Description                                                  | value                         |
 | :----------- | :------- | :----------------------------------------------------------- | :---------------------------- |
-| `buildType`  | `string` | **
-Required**  buildType                                      | framework                     |
-| `framework`  | `string` | **
-Required**                                                 | object                        |
-| `web`        | `string` | **choosable** your web project build directory               | **
-defalut**:app/dist          |
-| `server`     | `string` | **choosable** your  node web server project directory        | **
-defalut**:node dist/Main.js |
-| `command`    | `string` | **choosable** your node web server start command             | **
-defalut**:node dist/Main.js |
-| `staticPath` | `string` | **choosable** your node web server static resource directory | **
-defalut**:client            |
+| `buildType`  | `string` | **Required**  buildType                                      | framework                     |
+| `framework`  | `string` | **Required**                                                 | object                        |
+| `web`        | `string` | **choosable** your web project build directory               | **defalut**:app/dist          |
+| `server`     | `string` | **choosable** your  node web server project directory        | **defalut**:node dist/Main.js |
+| `command`    | `string` | **choosable** your node web server start command             | **defalut**:node dist/Main.js |
+| `staticPath` | `string` | **choosable** your node web server static resource directory | **defalut**:client            |
 
 `package.json`
 
