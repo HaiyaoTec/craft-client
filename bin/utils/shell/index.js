@@ -1,5 +1,4 @@
 import {createRequire} from "module";
-import {Command} from 'commander/esm.mjs';
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
 
@@ -26,27 +25,11 @@ function execCommand(dir, command) {
 }
 
 
-/**
- * 初始化命令行，并获取命令参数
- * @returns {OptionValues}
- */
-function getCommandOptions() {
-    //初始化命令行帮助信息
-    const program = new Command();
-    program.option('-d, --docker', 'generate docker image');
-    program.addHelpText('after', `
-Example call:
-  $ craft-h --help`);
-//解析命令行参数
-    program.parse(process.argv);
 
-//获取命令行参数
-    return program.opts()
-}
+
 
 
 
 export {
-    execCommand,
-    getCommandOptions
+    execCommand
 }

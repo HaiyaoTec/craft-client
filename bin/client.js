@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import {dockerFramework,dockerNode,dockerWeb} from './docker/index.js'
-import {getCommandOptions} from './utils/shell/index.js'
 import figlet from 'figlet'
 import chalk from 'chalk';
 import {getPkgMaifest} from "./utils/file/index.js";
+import {Command} from "commander";
 //tips:踩坑，在node中使用esm必须完成路径.js不能简写
 
 //获取PackageJson文件信息
@@ -93,3 +93,20 @@ function showFiglet() {
     });
 }
 
+/**
+ * 初始化命令行，并获取命令参数
+ * @returns {OptionValues}
+ */
+function getCommandOptions() {
+    //初始化命令行帮助信息
+    const program = new Command();
+    program.option('-d, --docker', 'generate docker image');
+    program.addHelpText('after', `
+Example call:
+  $ craft-h --help`);
+//解析命令行参数
+    program.parse(process.argv);
+
+//获取命令行参数
+    return program.opts()
+}

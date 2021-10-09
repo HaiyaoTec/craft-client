@@ -83,9 +83,15 @@ Install craft-client with npm
   "craft": {
     "buildType": "framework",
     "framework": {
-        "web": "app",
-        "server": "server",
-        "bootCommand": "node dist/Main.js",
+        "web":{
+          "dir":"app",
+          "buildDir":"dist",
+          "buildCommand":"npm run build"
+        }, 
+        "server": {
+            "dir" :"server",
+            "bootCommand": "node dist/Main.js"
+        },
         "staticPath": "client"
     }
 }
@@ -113,7 +119,7 @@ like  `npm run craft-docker` or `npm run craft-h`
 "craft": {
   "buildType": "framework",
   "framework": {
-  "web": "app/dist",
+  "web": "app",
   "server": "server",
   "command": "node dist/Main.js",
   "staticPath": "client"
@@ -128,4 +134,5 @@ npm run craft-docker
 ## Authors 👨‍💻
 
 - [@sudongyuer](https://github.com/sudongyuer)
+- [@Jude95](https://github.com/Jude95)
 

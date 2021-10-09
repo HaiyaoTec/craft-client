@@ -2,21 +2,32 @@ import {copyFile, getPkgMaifest, writeFile} from '../../utils/file/index.js'
 import {execCommand} from "../../utils/shell/index.js";
 import {getFrameworkDockerFileConfig} from './FrameworkDockerFile.js'
 import {cwd} from "process";
+import {createRequire} from "module";
+const require = createRequire(import.meta.url);
+let shell = require('shelljs');
+
 
 async function frameworkDockerTask() {
-    let appDistDir = getPkgMaifest()?.framework?.web?.trim()
-    let serverDir = getPkgMaifest()?.framework?.server?.trim()
-    if (!appDistDir) {
-        appDistDir = 'app/dist'
-    }
-    if (!serverDir) {
-        serverDir = 'server'
-    }
+
+    console.log('currentDir!!!!!!!!!!!!!!!!', cwd())
+
+    let webConfig = getPkgMaifest()?.craft?.framework?.web
+
+    let serverConfig = getPkgMaifest()?.craft?.framework?.server
+
+
+    //执行web打包命令
+    await buildWeb()
+
+    shell.cd('../')
+
+    console.log('currentDir!!!!!!!!!!!!!!!!', cwd())
 
     //拷贝app的dist目录
-    await copyFile(appDistDir, 'build')
+    await copyFile(`${webConfig.dir}\/${webConfig.buildDir}`??"app/dist", 'build')
+
     //拷贝server
-    await copyFile(serverDir, 'build')
+    await copyFile(`${serverConfig.dir}`??"server", 'build')
 
     //生成FrameworkDockerFile()
     await generateFrameworkDockerFile()
@@ -41,7 +52,10 @@ function generateFrameworkDockerFile() {
         //获取DockerfileConfig
         //获取FrameworkDockerFile配置信息
         let frameworkConfig = getPkgMaifest()?.craft?.framework
-        let frameworkDockerFileConfig = getFrameworkDockerFileConfig(frameworkConfig)
+        const webConfig=frameworkConfig?.web
+        const serverConfig=frameworkConfig?.server
+        const staticPath=frameworkConfig?.staticPath
+        let frameworkDockerFileConfig = getFrameworkDockerFileConfig(webConfig,serverConfig,staticPath)
         //在build目录创建Dockerfile文件
         //向nginx.conf写入配置数据
         writeFile('build/Dockerfile', frameworkDockerFileConfig).then(() => {
@@ -69,5 +83,17 @@ export function generateDockerImage() {
 
 }
 
+/**
+ * 执行web打包命令
+ */
+function buildWeb(){
+    return new Promise((resolve, reject) => {
+        const commandDir=`${getPkgMaifest()?.craft?.framework?.web?.dir}`
+        const buildCommand=`${getPkgMaifest()?.craft?.framework?.web?.buildCommand}`
+        execCommand(commandDir??"app",buildCommand??"npm run build").then(()=>{
+            resolve()
+        })
+    })
+}
 
 

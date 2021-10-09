@@ -8,6 +8,8 @@ export async function nginxDockerTask(buildDir = 'dist') {
     //多加一次为空串的判断，防止后边cpy拷贝所有目录
     if (!buildDir) buildDir = "dist"
 
+    //执行web打包命令
+    await buildWeb()
     // Copy buildDir to build/buildDir
     await copyFile(buildDir, 'build')
 
@@ -76,4 +78,15 @@ function generateDockerImage() {
         })
     })
 
+}
+
+/**
+ * 执行web打包命令
+ */
+function buildWeb(){
+    return new Promise((resolve, reject) => {
+        execCommand('./',getPkgMaifest()?.craft?.web?.buildCommand??"npm run build").then(()=>{
+            resolve()
+        })
+    })
 }

@@ -28,7 +28,7 @@ function generateNodeDockerFile() {
     return new Promise((resolve, reject) => {
         console.log('generateNodeDockerFile!!!')
         //获取DockerfileConfig
-        let nodeDockerFileConfig=getNodeDockerFileConfig(getPkgMaifest()?.craft?.node?.command)
+        let nodeDockerFileConfig=getNodeDockerFileConfig(getPkgMaifest()?.craft?.node?.bootCommand)
         //在build目录创建Dockerfile文件
         //向nginx.conf写入配置数据
         writeFile('build/Dockerfile',nodeDockerFileConfig).then(()=>{

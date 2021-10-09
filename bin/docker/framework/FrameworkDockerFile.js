@@ -1,6 +1,6 @@
-export function getFrameworkDockerFileConfig({web='app/dist',server='server',command='node dist/Main.js',staticPath='client'}){
-
-    let commandArray= command.split(' ')//node Main.js
+export function getFrameworkDockerFileConfig(web,server,staticPath="client"){
+    let commandArray= server?.bootCommand?.split(' ')//node Main.js
+    if(!commandArray)commandArray=['node','Main.js']
     console.log('++++++++++++++++',commandArray)
 
 
@@ -9,9 +9,9 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-COPY ${web} ${staticPath}
+COPY ${web.dir??"app"}\/${web.buildDir??"dist"} ${staticPath??"client"}
 
-COPY ${server} ./
+COPY ${server.dir??"server"} ./
 
 EXPOSE 80
 
