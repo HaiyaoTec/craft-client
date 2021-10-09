@@ -34,10 +34,11 @@ Install craft-client with npm
 
 ```json
   "craft": {
-"node": "web",
-"web": {
-"distDir": "dist"
-}
+    "node": "web",
+    "web": {
+        "distDir": "dist",
+        "buildCommand": "npm run build"
+    }
 }
 
 ```
@@ -56,10 +57,10 @@ Install craft-client with npm
 
 ```json
   "craft": {
-"buildType": "node",
-"node": {
-"command": "node app.js"
-}
+    "buildType": "node",
+    "node": {
+      "bootCommand": "node app.js"
+    }
 }
 ```
 
@@ -80,13 +81,13 @@ Install craft-client with npm
 
 ```json
   "craft": {
-"buildType": "framework",
-"framework": {
-"web": "app/dist",
-"server": "server",
-"command": "node dist/Main.js",
-"staticPath": "client"
-}
+    "buildType": "framework",
+    "framework": {
+        "web": "app",
+        "server": "server",
+        "bootCommand": "node dist/Main.js",
+        "staticPath": "client"
+    }
 }
 
 ```
