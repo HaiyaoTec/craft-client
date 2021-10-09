@@ -1,10 +1,10 @@
-import {copyFile, writeFile} from '../../utils/file/index.js'
+import {copyFile, getPkgMaifest, writeFile} from '../../utils/file/index.js'
 import {getNodeDockerFileConfig} from './NodeDockerFile.js'
 import {cwd} from "process";
-import {execCommand,showFiglet,getPkgMaifest} from "../../utils/shell/index.js";
+import {execCommand} from "../../utils/shell/index.js";
 
 
-async function nodeDockerTask() {
+export async function nodeDockerTask() {
 
     // Copy . to build/.
     await copyFile('.', 'build')
@@ -15,15 +15,10 @@ async function nodeDockerTask() {
     // 生成docker镜像文件
     await generateDockerImage()
 
-    //展示craft图案执行完成
-    showFiglet()
 
 
 }
 
-export {
-    nodeDockerTask
-}
 
 /**
  * 生成NodeDockerFile文件

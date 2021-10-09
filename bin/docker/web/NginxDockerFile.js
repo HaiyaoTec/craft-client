@@ -1,4 +1,4 @@
-function getNginxDockerFileConfig(){
+export function getNginxDockerFileConfig(){
     return `
 # 设置基础镜像
 FROM nginx:alpine
@@ -9,7 +9,4 @@ COPY dist/ /app
 
 COPY nginx.conf /etc/nginx/nginx.conf
  `
-}
-export {
-    getNginxDockerFileConfig
 }

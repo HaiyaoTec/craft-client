@@ -1,10 +1,10 @@
-import {execCommand, getPkgMaifest, showFiglet} from '../../utils/shell/index.js'
-import {copyFile, generateFile, writeFile} from "../../utils/file/index.js";
+import {execCommand} from '../../utils/shell/index.js'
+import {copyFile, generateFile, getPkgMaifest, writeFile} from "../../utils/file/index.js";
 import {cwd} from "process";
 import {getNginxConfig} from './NginxConfig.js'
 import {getNginxDockerFileConfig} from './NginxDockerFile.js'
 
-async function nginxDockerTask(buildDir = 'dist') {
+export async function nginxDockerTask(buildDir = 'dist') {
     //多加一次为空串的判断，防止后边cpy拷贝所有目录
     if (!buildDir) buildDir = "dist"
 
@@ -20,14 +20,10 @@ async function nginxDockerTask(buildDir = 'dist') {
     // 生成docker镜像文件
     await generateDockerImage()
 
-    //展示craft图案执行完成
-    showFiglet()
 
 }
 
-export {
-    nginxDockerTask
-}
+
 
 /**
  * 生成nginxConfig

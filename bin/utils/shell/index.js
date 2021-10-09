@@ -1,20 +1,9 @@
 import {createRequire} from "module";
 import {Command} from 'commander/esm.mjs';
-import path from "path";
-import {cwd} from "process";
-import figlet from 'figlet'
-import chalk from 'chalk';
-
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
 
-/**
- * 获取PackageJson文件对象
- *
- */
-function getPkgMaifest() {
-    return require(path.join(cwd(), 'package.json'))
-}
+
 
 /**
  * 在指定目录执行命令
@@ -55,29 +44,9 @@ Example call:
     return program.opts()
 }
 
-/**
- * 展示文字图片
- */
-function showFiglet() {
-    figlet?.text('C r a f t !!!', {
-        font: 'Graffiti',
-        horizontalLayout: 'default',
-        verticalLayout: 'default',
-        width: 80,
-        whitespaceBreak: true
-    }, function (err, data) {
-        if (err) {
-            console.log('Something went wrong...');
-            console.dir(err);
-            return;
-        }
-        console.log(chalk.blue(data));
-    });
-}
+
 
 export {
-    getPkgMaifest,
     execCommand,
-    getCommandOptions,
-    showFiglet
+    getCommandOptions
 }

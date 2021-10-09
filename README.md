@@ -1,12 +1,12 @@
+# craft-client ✨
 
-# craft-client
 ![](https://static01.imgkr.com/temp/0ac8b8268f6b478591479bca5ee3f879.jpg)
 
 Very simple to help you generate docker image
 
 (Finally free of Gradle ^_^)
 
-## Installation
+## Installation 🌝
 
 Install craft-client with npm
 
@@ -14,81 +14,123 @@ Install craft-client with npm
   npm install @imf/craft-client -D
 ```
 
-## Usage
-Configure it in package.json
+## Usage 🍉
 
-**in web project**
+### Step 1
 
-`package.json`
+> Configure it in package.json
 
-```json
-  {
-  "scripts": {
-    "craft-h": "craft -h",
-    "craft-docker": "craft --docker"
-  },
-  "craft": {
-    "buildType": "web",
-    "web": {
-      "distDir": "dist"
-    }
-  }
-}
+#### In web project Config Reference 🤖
 
-```
+`web`
 
-**in node project**
+| Parameter   | Type     | Description                                    | value            |
+| :---------- | :------- | :--------------------------------------------- | :--------------- |
+| `buildType` | `string` | **Required**  buildType                        | web              |
+| `web`       | `string` | **Required**                                   | object           |
+| `distDir`   | `string` | **choosable** your web project build directory | **defalut**:dist |
 
 `package.json`
 
 ```json
-  {
-  "scripts": {
-    "craft-h": "craft -h",
-    "craft-docker": "craft --docker"
-  },
   "craft": {
-    "buildType": "node",
-    "node": {
-      "command": "node app.js"
-    }
-  }
+"node": "web",
+"web": {
+"distDir": "dist"
+}
 }
 
 ```
 
-**in framework project**
+#### In node project Config Reference 🤖
+
+`node`
+
+| Parameter   | Type     | Description                                        | value                         |
+| :---------- | :------- | :------------------------------------------------- | :---------------------------- |
+| `buildType` | `string` | **Required**  buildType                            | node                          |
+| `node`      | `string` | **Required**                                       | object                        |
+| `command`   | `string` | **choosable** your node project executable command | **defalut**:node dist/Main.js |
 
 `package.json`
 
 ```json
-  {
-  "scripts": {
-    "craft-h": "craft -h",
-    "craft-docker": "craft --docker"
-  },
   "craft": {
-    "buildType": "framework",
-    "framework": {
-      "web": "app/dist",
-      "server": "server",
-      "command": "node dist/Main.js",
-      "staticPath": "client"
-    }
-  }
+"buildType": "node",
+"node": {
+"command": "node app.js"
+}
+}
+```
+
+#### In framework project Config Reference 🤖
+
+`framework`
+
+| Parameter    | Type     | Description                                                  | value                         |
+| :----------- | :------- | :----------------------------------------------------------- | :---------------------------- |
+| `buildType`  | `string` | **
+Required**  buildType                                      | framework                     |
+| `framework`  | `string` | **
+Required**                                                 | object                        |
+| `web`        | `string` | **choosable** your web project build directory               | **
+defalut**:app/dist          |
+| `server`     | `string` | **choosable** your  node web server project directory        | **
+defalut**:node dist/Main.js |
+| `command`    | `string` | **choosable** your node web server start command             | **
+defalut**:node dist/Main.js |
+| `staticPath` | `string` | **choosable** your node web server static resource directory | **
+defalut**:client            |
+
+`package.json`
+
+```json
+  "craft": {
+"buildType": "framework",
+"framework": {
+"web": "app/dist",
+"server": "server",
+"command": "node dist/Main.js",
+"staticPath": "client"
+}
 }
 
 ```
-Then just run the commands in the script
+
+### Step 2
+
+> Then just run the commands in the script
 
 like  `npm run craft-docker` or `npm run craft-h`
 
 - craft-docker (generate dockerImage)
 - craft-h (show help message)
 
+## Example
 
-## Authors
+`package.json`
+
+```json
+"scripts": {
+"craft-h": "craft -h",
+"craft-docker": "craft --docker"
+},
+"craft": {
+  "buildType": "framework",
+  "framework": {
+  "web": "app/dist",
+  "server": "server",
+  "command": "node dist/Main.js",
+  "staticPath": "client"
+  }
+}
+```
+`shell`
+```shell
+npm run craft-docker
+```
+
+## Authors 👨‍💻
 
 - [@sudongyuer](https://github.com/sudongyuer)
 
-  

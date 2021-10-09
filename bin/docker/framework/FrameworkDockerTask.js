@@ -1,5 +1,5 @@
-import {copyFile, writeFile} from '../../utils/file/index.js'
-import {execCommand, getPkgMaifest,showFiglet} from "../../utils/shell/index.js";
+import {copyFile, getPkgMaifest, writeFile} from '../../utils/file/index.js'
+import {execCommand} from "../../utils/shell/index.js";
 import {getFrameworkDockerFileConfig} from './FrameworkDockerFile.js'
 import {cwd} from "process";
 
@@ -23,9 +23,6 @@ async function frameworkDockerTask() {
 
     // 生成docker镜像文件
     await generateDockerImage()
-
-    //展示craft图案执行完成
-    showFiglet()
 
 
 }
@@ -58,7 +55,7 @@ function generateFrameworkDockerFile() {
 /**
  * 生成Docker镜像文件
  */
-function generateDockerImage() {
+export function generateDockerImage() {
     return new Promise((resolve, reject) => {
         const appName = getPkgMaifest().name
         //从项目根目录cd到build目录
@@ -73,7 +70,4 @@ function generateDockerImage() {
 }
 
 
-export {
-    getFrameworkDockerFileConfig
-}
 

@@ -1,6 +1,7 @@
 import {createRequire} from "module";
 import cpy from "cpy";
-
+import path from "path";
+import {cwd} from "process";
 const require = createRequire(import.meta.url);
 const makeDir = require('make-dir');
 let shell = require('shelljs');
@@ -67,10 +68,19 @@ async function copyFile(src, dest,options={
     console.log('Files copied!');
 }
 
+/**
+ * 获取PackageJson文件对象
+ *
+ */
+function getPkgMaifest() {
+    return require(path.join(cwd(), 'package.json'))
+}
+
 
 export {
     generateDir,
     generateFile,
     writeFile,
-    copyFile
+    copyFile,
+    getPkgMaifest
 }

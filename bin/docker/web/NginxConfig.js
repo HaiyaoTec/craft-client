@@ -1,4 +1,4 @@
-function getNginxConfig(){
+export function getNginxConfig(){
     return `
 user  nginx;
 worker_processes  1;
@@ -32,6 +32,4 @@ http {
  }
  `
 }
-export {
-    getNginxConfig
-}
+
