@@ -1,9 +1,9 @@
 function getNodeDockerFileConfig(command='node dist/Main.js'){
     //非空校验
-    if(!command || !command.trim()){
-        console.log('command',command)
-        command='node dist/Main.js'
-    }
+    // if(!command || !command.trim()){
+    //     console.log('command',command)
+    //     command='node dist/Main.js'
+    // }
 
 
     let commandArray= command.split(' ')//node dist/Main.js

@@ -12,14 +12,56 @@ Install craft-client with npm
 
 ```bash
   npm install @imf/craft-client -D
-
 ```
 
 ## Usage
 Configure it in package.json
 
+**in web project**
+
 `package.json`
-```javascript
+
+```json
+  {
+  "scripts": {
+    "craft-h": "craft -h",
+    "craft-docker": "craft --docker"
+  },
+  "craft": {
+    "buildType": "web",
+    "web": {
+      "distDir": "dist"
+    }
+  }
+}
+
+```
+
+**in node project**
+
+`package.json`
+
+```json
+  {
+  "scripts": {
+    "craft-h": "craft -h",
+    "craft-docker": "craft --docker"
+  },
+  "craft": {
+    "buildType": "node",
+    "node": {
+      "command": "node app.js"
+    }
+  }
+}
+
+```
+
+**in framework project**
+
+`package.json`
+
+```json
   {
   "scripts": {
     "craft-h": "craft -h",
@@ -27,15 +69,11 @@ Configure it in package.json
   },
   "craft": {
     "buildType": "framework",
-    "web": {
-      "distDir": ""
-    },
-    "node": {
-      "command": ""
-    },
     "framework": {
-      "web": "",
-      "server": ""
+      "web": "app/dist",
+      "server": "server",
+      "command": "node dist/Main.js",
+      "staticPath": "client"
     }
   }
 }
@@ -43,7 +81,10 @@ Configure it in package.json
 ```
 Then just run the commands in the script
 
-like `npm run craft-h` or `npm run craft-docker`
+like  `npm run craft-docker` or `npm run craft-h`
+
+- craft-docker (generate dockerImage)
+- craft-h (show help message)
 
 
 ## Authors
