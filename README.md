@@ -30,6 +30,7 @@ Install craft-client with npm
 | `web`       | `string` | **Required**                                   | object           |
 | `distDir`   | `string` | **choosable** your web project build directory | **defalut**:dist |
 | `buildCommand`   | `string` | **Required** your web project build command | **defalut**:npm run build |
+
 `package.json`
 
 ```json
@@ -74,12 +75,13 @@ Install craft-client with npm
 | `framework`  | `string` | **Required**                                                 | object                        |
 | `staticPath`  | `string` | **choosable** the static resource path                                                | **defalut**:client                        |
 | `web`        | `string` | **Required**             | object          |
-| web `dir`        | `string` | **Required** the web project directory            | app          |
-| web `buildDir`        | `string` | **Required**   the web project build directoryName          | dist          |
-| web `buildCommand`        | `string` | **choosable**             |**default**: npm run build          |
+| web`dir`        | `string` | **Required** the web project directory            | app          |
+| web`buildDir`        | `string` | **Required**   the web project build directoryName          | dist          |
+| web`buildCommand`        | `string` | **choosable** the web project build command            |**default**: npm run build          |
 | `server`        | `string` | **Required**             | object          |
-| server `dir`        | `string` | **Required**  the web server directory           | server          |
-| server `bootCommand`        | `string` | **choosable** the web server boot command            |**defalut**:node dist/Main.js           |
+| server`dir`        | `string` | **Required**  the web server directory           | server          |
+| server`bootCommand`        | `string` | **choosable** the web server boot command            |**defalut**:node dist/Main.js           |
+
 `package.json`
 
 ```json
@@ -116,8 +118,8 @@ like  `npm run craft-docker` or `npm run craft-h`
 
 ```json
 "scripts": {
-"craft-h": "craft -h",
-"craft-docker": "craft --docker"
+  "craft-h": "craft -h",
+  "craft-docker": "craft --docker"
 },
 "craft": {
   "buildType": "framework",
