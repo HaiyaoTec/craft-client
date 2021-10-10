@@ -112,7 +112,7 @@ like  `npm run craft-docker` or `npm run craft-h`
 - craft-docker (generate dockerImage)
 - craft-h (show help message)
 
-## Example
+## Example 🐞
 
 `package.json`
 
