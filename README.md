@@ -26,10 +26,10 @@ Install craft-client with npm
 
 | Parameter   | Type     | Description                                    | value            |
 | :---------- | :------- | :--------------------------------------------- | :--------------- |
-| `buildType` | `string` | **Required**  buildType                        | web              |
+| `buildType` | `string` | **Required**  build type                        | web              |
 | `web`       | `string` | **Required**                                   | object           |
 | `distDir`   | `string` | **choosable** your web project build directory | **defalut**:dist |
-
+| `buildCommand`   | `string` | **Required** your web project build command | **defalut**:npm run build |
 `package.json`
 
 ```json
@@ -49,9 +49,9 @@ Install craft-client with npm
 
 | Parameter   | Type     | Description                                        | value                         |
 | :---------- | :------- | :------------------------------------------------- | :---------------------------- |
-| `buildType` | `string` | **Required**  buildType                            | node                          |
+| `buildType` | `string` | **Required**  build type                            | node                          |
 | `node`      | `string` | **Required**                                       | object                        |
-| `command`   | `string` | **choosable** your node project executable command | **defalut**:node dist/Main.js |
+| `bootCommand`   | `string` | **choosable** your node project executable command | **defalut**:node dist/Main.js |
 
 `package.json`
 
@@ -70,13 +70,16 @@ Install craft-client with npm
 
 | Parameter    | Type     | Description                                                  | value                         |
 | :----------- | :------- | :----------------------------------------------------------- | :---------------------------- |
-| `buildType`  | `string` | **Required**  buildType                                      | framework                     |
+| `buildType`  | `string` | **Required**  build type                                    | framework                     |
 | `framework`  | `string` | **Required**                                                 | object                        |
-| `web`        | `string` | **choosable** your web project build directory               | **defalut**:app/dist          |
-| `server`     | `string` | **choosable** your  node web server project directory        | **defalut**:node dist/Main.js |
-| `command`    | `string` | **choosable** your node web server start command             | **defalut**:node dist/Main.js |
-| `staticPath` | `string` | **choosable** your node web server static resource directory | **defalut**:client            |
-
+| `staticPath`  | `string` | **choosable** the static resource path                                                | **defalut**:client                        |
+| `web`        | `string` | **Required**             | object          |
+| web `dir`        | `string` | **Required** the web project directory            | app          |
+| web `buildDir`        | `string` | **Required**   the web project build directoryName          | dist          |
+| web `buildCommand`        | `string` | **choosable**             |**default**: npm run build          |
+| `server`        | `string` | **Required**             | object          |
+| server `dir`        | `string` | **Required**  the web server directory           | server          |
+| server `bootCommand`        | `string` | **choosable** the web server boot command            |**defalut**:node dist/Main.js           |
 `package.json`
 
 ```json
@@ -118,11 +121,17 @@ like  `npm run craft-docker` or `npm run craft-h`
 },
 "craft": {
   "buildType": "framework",
-  "framework": {
-  "web": "app",
-  "server": "server",
-  "command": "node dist/Main.js",
-  "staticPath": "client"
+    "framework": {
+    "staticPath": "client",
+    "web":{
+        "dir":"app",
+        "buildDir":"dist",
+        "buildCommand":"npm run build"
+    },
+    "server": {
+        "dir" :"server",
+        "bootCommand": "node dist/Main.js"
+    }
   }
 }
 ```
@@ -134,5 +143,4 @@ npm run craft-docker
 ## Authors 👨‍💻
 
 - [@sudongyuer](https://github.com/sudongyuer)
-- [@Jude95](https://github.com/Jude95)
 

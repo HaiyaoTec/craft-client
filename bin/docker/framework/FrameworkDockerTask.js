@@ -10,6 +10,7 @@ let shell = require('shelljs');
 async function frameworkDockerTask() {
 
     console.log('currentDir!!!!!!!!!!!!!!!!', cwd())
+    const projectRootPath=cwd()
 
     let webConfig = getPkgMaifest()?.craft?.framework?.web
 
@@ -19,7 +20,7 @@ async function frameworkDockerTask() {
     //执行web打包命令
     await buildWeb()
 
-    shell.cd('../')
+    shell.cd(projectRootPath)
 
     console.log('currentDir!!!!!!!!!!!!!!!!', cwd())
 
