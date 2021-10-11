@@ -1,7 +1,6 @@
 # craft-client ✨
 
-![](https://static01.imgkr.com/temp/0ac8b8268f6b478591479bca5ee3f879.jpg)
-
+![](./img/craft_client.jpg)
 Very simple to help you generate docker image
 
 (Finally free of Gradle ^_^)
