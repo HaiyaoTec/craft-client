@@ -52,6 +52,7 @@ Install craft-client with npm
 | `buildType` | `string` | **Required**  build type                            | node                          |
 | `node`      | `string` | **Required**                                       | object                        |
 | `bootCommand`   | `string` | **Options** your node project executable command | **defalut**:node dist/Main.js |
+| `buildCommand`   | `string` | **Options** your node project build command | **defalut**:do not execute |
 
 `package.json`
 
@@ -59,7 +60,8 @@ Install craft-client with npm
   "craft": {
     "buildType": "node",
     "node": {
-      "bootCommand": "node app.js"
+      "bootCommand": "node app.js",
+      "buildCommand": "npm run build"
     }
 }
 ```
@@ -80,6 +82,7 @@ Install craft-client with npm
 | `server`        | `string` | **Required**             | object          |
 | server`dir`        | `string` | **Required**  the web server directory           | server          |
 | server`bootCommand`        | `string` | **Options** the web server boot command            |**defalut**:node dist/Main.js           |
+| server`buildCommand`        | `string` | **Options** the web server build command            |**defalut**: do not execute           |
 
 `package.json`
 
@@ -94,7 +97,8 @@ Install craft-client with npm
         }, 
         "server": {
             "dir" :"server",
-            "bootCommand": "node dist/Main.js"
+            "bootCommand": "node dist/Main.js",
+            "buildCommand": "npm run build"
         },
         "staticPath": "client"
     }

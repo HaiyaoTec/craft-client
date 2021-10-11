@@ -3,7 +3,6 @@ import {execCommand} from "../../utils/shell/index.js";
 import {getFrameworkDockerFileConfig} from './FrameworkDockerFile.js'
 import {cwd} from "process";
 import {createRequire} from "module";
-
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
 
