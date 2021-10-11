@@ -135,7 +135,8 @@ like  `npm run craft-docker` or `npm run craft-h`
     },
     "server": {
         "dir" :"server",
-        "bootCommand": "node dist/Main.js"
+        "bootCommand": "node dist/Main.js",
+        "buildCommand": "npm run build"
     }
   }
 }
@@ -143,6 +144,26 @@ like  `npm run craft-docker` or `npm run craft-h`
 `shell`
 ```shell
 npm run craft-docker
+```
+**tips:if you are in haiyaotec work flow you should config gaia.yml**
+
+`gaia.yml`
+
+```yaml
+name: kalista-web
+build:
+  beta:
+    - npm install
+    - npm install --prefix kalista-browser/kalista-frontend-app
+    - npm install --prefix kalista-server
+    - npm run craft-docker
+  prod:
+      - npm install
+      - npm install --prefix kalista-browser/kalista-frontend-app
+      - npm install --prefix kalista-server
+      - npm run craft-docker
+release: mars
+
 ```
 
 ## Authors 👨‍💻
