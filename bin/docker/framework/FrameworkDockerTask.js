@@ -3,6 +3,7 @@ import {execCommand} from "../../utils/shell/index.js";
 import {getFrameworkDockerFileConfig} from './FrameworkDockerFile.js'
 import {cwd} from "process";
 import {createRequire} from "module";
+
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
 
@@ -10,7 +11,7 @@ let shell = require('shelljs');
 async function frameworkDockerTask() {
 
     console.log('currentDir!!!!!!!!!!!!!!!!', cwd())
-    const projectRootPath=cwd()
+    const projectRootPath = cwd()
 
     let webConfig = getPkgMaifest()?.craft?.framework?.web
 
@@ -19,19 +20,25 @@ async function frameworkDockerTask() {
 
     //执行web打包命令
     await buildWeb()
+    shell.cd(projectRootPath)
 
+    //执行server打包命令
+    await buildServer()
     shell.cd(projectRootPath)
 
     console.log('currentDir!!!!!!!!!!!!!!!!', cwd())
 
     //拷贝app的dist目录
-    await copyFile(`${webConfig.dir}\/${webConfig.buildDir}`??"app/dist", 'build')
+    await copyFile(`${webConfig.dir}\/${webConfig.buildDir}` ?? "app/dist", 'build')
+    shell.cd(projectRootPath)
 
     //拷贝server
-    await copyFile(`${serverConfig.dir}`??"server", 'build')
+    await copyFile(`${serverConfig.dir}` ?? "server", 'build')
+    shell.cd(projectRootPath)
 
     //生成FrameworkDockerFile()
     await generateFrameworkDockerFile()
+    shell.cd(projectRootPath)
 
     // 生成docker镜像文件
     await generateDockerImage()
@@ -53,10 +60,10 @@ function generateFrameworkDockerFile() {
         //获取DockerfileConfig
         //获取FrameworkDockerFile配置信息
         let frameworkConfig = getPkgMaifest()?.craft?.framework
-        const webConfig=frameworkConfig?.web
-        const serverConfig=frameworkConfig?.server
-        const staticPath=frameworkConfig?.staticPath
-        let frameworkDockerFileConfig = getFrameworkDockerFileConfig(webConfig,serverConfig,staticPath)
+        const webConfig = frameworkConfig?.web
+        const serverConfig = frameworkConfig?.server
+        const staticPath = frameworkConfig?.staticPath
+        let frameworkDockerFileConfig = getFrameworkDockerFileConfig(webConfig, serverConfig, staticPath)
         //在build目录创建Dockerfile文件
         //向nginx.conf写入配置数据
         writeFile('build/Dockerfile', frameworkDockerFileConfig).then(() => {
@@ -87,13 +94,33 @@ export function generateDockerImage() {
 /**
  * 执行web打包命令
  */
-function buildWeb(){
+function buildWeb() {
     return new Promise((resolve, reject) => {
-        const commandDir=`${getPkgMaifest()?.craft?.framework?.web?.dir}`
-        const buildCommand=`${getPkgMaifest()?.craft?.framework?.web?.buildCommand}`
-        execCommand(commandDir??"app",buildCommand??"npm run build").then(()=>{
+        const commandDir = `${getPkgMaifest()?.craft?.framework?.web?.dir}`
+        const buildCommand = `${getPkgMaifest()?.craft?.framework?.web?.buildCommand}`
+        execCommand(commandDir ?? "app", buildCommand ?? "npm run build").then(() => {
             resolve()
         })
+    })
+}
+
+/**
+ * 执行web打包命令
+ */
+function buildServer() {
+    return new Promise((resolve, reject) => {
+        const commandDir = `${getPkgMaifest()?.craft?.framework?.server?.dir}`
+        const buildCommand = `${getPkgMaifest()?.craft?.framework?.server?.buildCommand}`
+        //如果没有设置buildCommand,就不执行build
+        if (!buildCommand) {
+            resolve()
+        } else {
+            execCommand(commandDir ?? "server", buildCommand ?? "npm run build").then(() => {
+                resolve()
+            })
+        }
+
+
     })
 }
 
