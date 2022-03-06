@@ -33,8 +33,8 @@ Install craft-client with npm
 `package.json`
 
 ```json
-  "buildType": {
-    "node": "web",
+  "craft": {
+    "buildType": "web",
     "web": {
         "distDir": "dist",
         "buildCommand": "npm run build"
