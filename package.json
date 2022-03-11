@@ -1,6 +1,6 @@
 {
   "name": "@haiyaotec/craft-client",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "",
   "type": "module",
   "main": "src/index.js",
