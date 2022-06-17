@@ -97,6 +97,10 @@ function buildWeb() {
     return new Promise((resolve, reject) => {
         const commandDir = `${getPkgMaifest()?.craft?.framework?.web?.dir}`
         const buildCommand = `${getPkgMaifest()?.craft?.framework?.web?.buildCommand}`
+        //为空不执行build
+        if (!buildCommand){
+            resolve()
+        }
         execCommand(commandDir ?? "app", buildCommand ?? "npm run build").then(() => {
             resolve()
         })
