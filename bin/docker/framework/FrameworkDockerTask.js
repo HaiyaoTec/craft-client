@@ -98,7 +98,7 @@ function buildWeb() {
         const commandDir = `${getPkgMaifest()?.craft?.framework?.web?.dir}`
         const buildCommand = `${getPkgMaifest()?.craft?.framework?.web?.buildCommand}`
         //为空不执行build
-        if (!buildCommand){
+        if (buildCommand==='undefined' || !buildCommand) {
             resolve()
         }else{
             execCommand(commandDir ?? "app", buildCommand ?? "npm run build").then(() => {
@@ -116,7 +116,7 @@ function buildServer() {
         const commandDir = `${getPkgMaifest()?.craft?.framework?.server?.dir}`
         const buildCommand = `${getPkgMaifest()?.craft?.framework?.server?.buildCommand}`
         //如果没有设置buildCommand,就不执行build
-        if (!buildCommand) {
+        if (buildCommand==='undefined'||!buildCommand) {
             resolve()
         } else {
             execCommand(commandDir ?? "server", buildCommand ?? "npm run build").then(() => {

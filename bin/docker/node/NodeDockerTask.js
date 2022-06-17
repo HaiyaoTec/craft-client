@@ -74,7 +74,7 @@ function generateDockerImage() {
  */
 function buildNode(){
     return new Promise((resolve, reject) => {
-        if(!getPkgMaifest()?.craft?.node?.buildCommand){
+        if(getPkgMaifest()?.craft?.node?.buildCommand==='undefined' || !getPkgMaifest()?.craft?.node?.buildCommand){
             resolve()
         }else {
             execCommand('./',getPkgMaifest()?.craft?.node?.buildCommand??"npm run build").then(()=>{
