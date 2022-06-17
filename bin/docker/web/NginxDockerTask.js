@@ -88,9 +88,10 @@ function buildWeb(){
         //如果为空则不执行打包命令
         if(!getPkgMaifest()?.craft?.web?.buildCommand){
             resolve()
+        }else{
+            execCommand('./',getPkgMaifest()?.craft?.web?.buildCommand??"npm run build").then(()=>{
+                resolve()
+            })
         }
-        execCommand('./',getPkgMaifest()?.craft?.web?.buildCommand??"npm run build").then(()=>{
-            resolve()
-        })
     })
 }

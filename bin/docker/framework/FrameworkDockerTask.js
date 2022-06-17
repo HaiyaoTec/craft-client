@@ -100,10 +100,11 @@ function buildWeb() {
         //为空不执行build
         if (!buildCommand){
             resolve()
+        }else{
+            execCommand(commandDir ?? "app", buildCommand ?? "npm run build").then(() => {
+                resolve()
+            })
         }
-        execCommand(commandDir ?? "app", buildCommand ?? "npm run build").then(() => {
-            resolve()
-        })
     })
 }
 
